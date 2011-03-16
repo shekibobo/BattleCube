@@ -1,0 +1,172 @@
+# depslib dependency file v1.0
+1300237350 source:/home/joshua/Documents/cis367/batttlecubes/BattleCube/main.cpp
+	<GL/gl.h>
+	<GL/glu.h>
+	<GL/glut.h>
+	"include/Player.h"
+	<stdlib.h>
+
+1263839526 /usr/include/GL/glut.h
+	"freeglut_std.h"
+
+1263839526 /usr/include/GL/freeglut_std.h
+	<Windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1285867037 /usr/include/GL/gl.h
+	"gl_mangle.h"
+	<stdlib.h>
+	<windows.h>
+	<GL/mesa_wgl.h>
+	<GL/glext.h>
+
+1285867037 /usr/include/GL/gl_mangle.h
+
+1295646257 /usr/include/stdlib.h
+	<features.h>
+	<stddef.h>
+	<bits/waitflags.h>
+	<bits/waitstatus.h>
+	<xlocale.h>
+	<sys/types.h>
+	<alloca.h>
+	<bits/stdlib.h>
+	<bits/stdlib-ldbl.h>
+
+1295646243 /usr/include/features.h
+	<bits/predefs.h>
+	<sys/cdefs.h>
+	<gnu/stubs.h>
+
+1295646243 /usr/include/bits/predefs.h
+
+1295646264 /usr/include/sys/cdefs.h
+	<features.h>
+	<bits/wordsize.h>
+
+1295646257 /usr/include/bits/wordsize.h
+
+1295646243 /usr/include/gnu/stubs.h
+	<bits/wordsize.h>
+	<gnu/stubs-32.h>
+	<gnu/stubs-64.h>
+
+1295646282 /usr/include/gnu/stubs-64.h
+
+1295646262 /usr/include/bits/waitflags.h
+
+1295646262 /usr/include/bits/waitstatus.h
+	<endian.h>
+
+1295646260 /usr/include/endian.h
+	<features.h>
+	<bits/endian.h>
+	<bits/byteswap.h>
+
+1295646260 /usr/include/bits/endian.h
+
+1295646260 /usr/include/bits/byteswap.h
+	<bits/wordsize.h>
+
+1295646244 /usr/include/xlocale.h
+
+1295646262 /usr/include/sys/types.h
+	<features.h>
+	<bits/types.h>
+	<time.h>
+	<stddef.h>
+	<endian.h>
+	<sys/select.h>
+	<sys/sysmacros.h>
+	<bits/pthreadtypes.h>
+
+1295646262 /usr/include/bits/types.h
+	<features.h>
+	<bits/wordsize.h>
+	<bits/typesizes.h>
+
+1295646262 /usr/include/bits/typesizes.h
+
+1295646261 /usr/include/time.h
+	<features.h>
+	<stddef.h>
+	<bits/time.h>
+	<bits/types.h>
+	<bits/types.h>
+	<bits/types.h>
+	<bits/types.h>
+	<bits/types.h>
+	<xlocale.h>
+
+1295646261 /usr/include/bits/time.h
+	<bits/types.h>
+	<bits/types.h>
+
+1295646264 /usr/include/sys/select.h
+	<features.h>
+	<bits/types.h>
+	<bits/select.h>
+	<bits/sigset.h>
+	<time.h>
+	<bits/time.h>
+
+1295646264 /usr/include/bits/select.h
+	<bits/wordsize.h>
+
+1295646257 /usr/include/bits/sigset.h
+
+1295646262 /usr/include/sys/sysmacros.h
+	<features.h>
+
+1295646262 /usr/include/bits/pthreadtypes.h
+	<bits/wordsize.h>
+
+1295646257 /usr/include/alloca.h
+	<features.h>
+	<stddef.h>
+
+1295646257 /usr/include/bits/stdlib.h
+
+1295646257 /usr/include/bits/stdlib-ldbl.h
+
+1285867037 /usr/include/GL/glext.h
+	<windows.h>
+	<stddef.h>
+	<inttypes.h>
+	<inttypes.h>
+	<inttypes.h>
+	<stdint.h>
+	<stdint.h>
+	<inttypes.h>
+
+1295646257 /usr/include/inttypes.h
+	<features.h>
+	<stdint.h>
+	<stddef.h>
+
+1295646257 /usr/include/stdint.h
+	<features.h>
+	<bits/wchar.h>
+	<bits/wordsize.h>
+
+1295646260 /usr/include/bits/wchar.h
+
+1285867030 /usr/include/GL/glu.h
+	"glu_mangle.h"
+	<GL/gl.h>
+
+1285867030 /usr/include/GL/glu_mangle.h
+
+1300237570 /home/joshua/Documents/cis367/batttlecubes/BattleCube/include/Player.h
+	<GL/gl.h>
+	<GL/glu.h>
+	<GL/glut.h>
+
+1300237294 source:/home/joshua/Documents/cis367/batttlecubes/BattleCube/src/Player.cpp
+	"../include/Player.h"
+	<cstdlib>
+	<cmath>
+	<algorithm>
+
