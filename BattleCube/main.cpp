@@ -17,6 +17,7 @@
 #include <GL/glut.h>
 
 #include "include/Player.h"
+#include "include/World.h"
 #include <stdlib.h>
 
 #define ROOM_LENGTH 500
@@ -24,6 +25,7 @@
 static int slices = 16;
 static int stacks = 16;
 Player player = Player(0.0, 0.0, 5.0, ROOM_LENGTH);
+World world = World();
 bool keyStates[256];
 
 /* set up lighting and textures */
@@ -70,6 +72,7 @@ static void display(void)
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
+    world.Draw();
     player.Move();
     gluLookAt(player.GetPosX(), player.GetPosY(), player.GetPosZ(),
               player.GetPosX(), player.GetPosY(), player.GetPosZ() - 1.0,

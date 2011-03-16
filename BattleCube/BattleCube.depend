@@ -1,9 +1,10 @@
 # depslib dependency file v1.0
-1300237350 source:/home/joshua/Documents/cis367/batttlecubes/BattleCube/main.cpp
+1300292515 source:/home/joshua/Documents/cis367/batttlecubes/BattleCube/main.cpp
 	<GL/gl.h>
 	<GL/glu.h>
 	<GL/glut.h>
 	"include/Player.h"
+	"include/World.h"
 	<stdlib.h>
 
 1263839526 /usr/include/GL/glut.h
@@ -169,4 +170,13 @@
 	<cstdlib>
 	<cmath>
 	<algorithm>
+
+1300291487 /home/joshua/Documents/cis367/batttlecubes/BattleCube/include/World.h
+	<GL/gl.h>
+	<GL/glu.h>
+	<GL/glut.h>
+	<cstdio>
+
+1300292530 source:/home/joshua/Documents/cis367/batttlecubes/BattleCube/src/World.cpp
+	"../include/World.h"
 
