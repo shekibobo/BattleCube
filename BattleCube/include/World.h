@@ -4,8 +4,11 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
+
+#include "Player.h"
 #include <cstdio>
 
+class Player;
 
 class World
 {
@@ -20,14 +23,19 @@ class World
         void SetWallLength(GLfloat val) { m_WallLength = val; }
 
         void SetTexture();
-
-
         void Draw();
+
+
+        Player* GetPlayer() {
+            //printf("accessing player...\n");
+            return m_pPlayer;
+        }
 
     protected:
     private:
         GLfloat m_WallLength; //!< Member variable "m_WallLength"
         GLuint m_Texture;
+        Player* m_pPlayer;
 
 };
 

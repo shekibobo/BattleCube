@@ -1,17 +1,28 @@
 #include "../include/Player.h"
 #include <cstdlib>
+#include <cstdio>
 #include <cmath>
 #include <algorithm>
 
+#define PI 3.14159265
+
 using namespace std;
 
-Player::Player(GLfloat PosX, GLfloat PosY, GLfloat PosZ, GLfloat Boundary)
+Player::Player(GLfloat PosX, GLfloat PosY, GLfloat PosZ, World *world)
 {
+    m_pWorld = world;
+
     //ctor
     SetPosX(PosX);
     SetPosY(PosY);
     SetPosZ(PosZ);
-    SetBoundary((Boundary / 2.0) - 2.0);
+
+    SetLookAngle(PI);
+    SetDir(1.0, 0.0, -1.0);
+    SetBoundary((Env().GetWallLength() / 2.0) - 2.0);
+    printf("Boundary: %f\n", GetBoundary());
+
+
 }
 
 Player::~Player()
@@ -19,28 +30,66 @@ Player::~Player()
     //dtor
 }
 
-void Player::Move() {
-    if ( max( fabs(GetDirX()), max ( fabs(GetDirY()), fabs(GetDirZ()) ) ) > 0.0 )
-        SetFreefalling(true);
+void Player::Move(bool keyStates[]) {
+    if ( inBounds(true) && keyStates['w']) {
+        SetPosZ(GetPosZ() + GetDirZ());
+        SetPosX(GetPosX() + GetDirX());
+    }
+    if ( inBounds(false) && keyStates['s']) {
+        SetPosZ(GetPosZ() - GetDirZ());
+        SetPosX(GetPosX() - GetDirX());
+    }
 
-    SetPosX(GetPosX() + GetDirX());
-    SetPosY(GetPosY() + GetDirY());
-    SetPosZ(GetPosZ() + GetDirZ());
+    if (keyStates['a']) {
+        SetLookAngle(LookAngle() + PI / 45.0);
+        SetDir( sin(LookAngle()), 0.0, cos(LookAngle()) );
+    }
+    if (keyStates['d']) {
+        SetLookAngle(LookAngle() - PI / 45.0);
+        SetDir(sin(LookAngle()), 0.0, cos(LookAngle()) );
 
-    if (HasReachedBoundary()) { Stop(); }
+    }
 }
 
-bool Player::HasReachedBoundary() {
-    GLfloat boundary = GetBoundary();
 
-    // detect if the player has come into contact with any wall
-    GLfloat x = fabs(GetPosX());
-    GLfloat y = fabs(GetPosY());
-    GLfloat z = fabs(GetPosZ());
+bool Player::inBounds(bool forward) {
+    if (forward) {
+        if (GetDirX() > 0 && GetPosX() >= GetBoundary() - 2) return false;
+        if (GetDirZ() > 0 && GetPosZ() >= GetBoundary() - 2) return false;
+        if (GetDirX() < 0 && GetPosX() <= -GetBoundary() + 2) return false;
+        if (GetDirZ() < 0 && GetPosZ() <= -GetBoundary() + 2) return false;
 
-    GLfloat maxDist = max(x, max(y, z));
+        return true;
+    } else {
+        if (GetDirX() < 0 && GetPosX() >= GetBoundary() - 2) return false;
+        if (GetDirZ() < 0 && GetPosZ() >= GetBoundary() - 2) return false;
+        if (GetDirX() > 0 && GetPosX() <= -GetBoundary() + 2) return false;
+        if (GetDirZ() > 0 && GetPosZ() <= -GetBoundary() + 2) return false;
 
-    if (maxDist >= boundary) return true;
-
-    return false;
+        return true;
+    }
 }
+
+void Player::Draw() {
+    /*
+    gluLookAt(GetPosX(), GetPosY(), GetPosZ(),
+              GetPosX(), GetPosY(), GetPosZ() - 1.0,
+              0.0, 1.0, 0.0);
+              */
+    Look();
+
+}
+
+void Player::Look() {
+    SetLookX(sin(LookAngle()) + GetPosX());
+    SetLookZ(cos(LookAngle()) + GetPosZ());
+
+    gluLookAt(GetPosX(), GetPosY(), GetPosZ(),
+              GetLookX(), GetLookY(), GetLookZ(),
+              0.0, 1.0, 0.0);
+
+
+
+}
+
+World Player::Env()  { return *m_pWorld; }

@@ -1,9 +1,16 @@
 #include "../include/World.h"
 
+using namespace std;
+
 World::World()
 {
     //ctor
     SetTexture();
+    SetWallLength(400);
+
+    printf("creating player...\n");
+    m_pPlayer = new Player(0.0, 0.0, 0.0, this);
+    printf("player created.\n");
 }
 
 World::~World()
@@ -12,49 +19,98 @@ World::~World()
 }
 
 void World::SetTexture() {
-    const char* filename = "../images/gradient.gif";
-    int width, height;
-    unsigned char *data;
-    FILE *file;
 
-    width = 256;
-    height = 256;
-
-    // allocate buffer
-    data = (unsigned char *) malloc( width * height * 3 );
-
-    // open and read texture data
-    file = fopen( filename, "rb");
-    fread( data, width * height * 3, 1, file );
-    fclose( file );
-
-    //allocate a texture name
-    glGenTextures(1, &m_Texture);
-
-    // load the current texture
-    glBindTexture( GL_TEXTURE_2D, m_Texture );
-
-    // select modulate to mi texture with color for shading
-    glTexEnvf( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
-
-    // when texture area is large, bilinear filter the original
-    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
-
-    // build our texture mipmaps
-    gluBuild2DMipmaps(GL_TEXTURE_2D, 3, width, height, GL_RGB,
-                      GL_UNSIGNED_BYTE, data);
-
-    // free buffer
-    free (data);
-
-    glEnable ( GL_TEXTURE_2D );
 }
 
 void World::Draw() {
-    glBindTexture( GL_TEXTURE_2D, m_Texture );
+    static int slices = 16;
+    static int stacks = 16;
+    const double t = glutGet(GLUT_ELAPSED_TIME) / 1000.0;
+    const double a = t*90.0;
+
+    GLubyte halftone[] = {
+        0xAA, 0xAA, 0xAA, 0xAA, 0x55, 0x55, 0x55, 0x55,
+        0xAA, 0xAA, 0xAA, 0xAA, 0x55, 0x55, 0x55, 0x55,
+        0xAA, 0xAA, 0xAA, 0xAA, 0x55, 0x55, 0x55, 0x55,
+        0xAA, 0xAA, 0xAA, 0xAA, 0x55, 0x55, 0x55, 0x55,
+        0xAA, 0xAA, 0xAA, 0xAA, 0x55, 0x55, 0x55, 0x55,
+        0xAA, 0xAA, 0xAA, 0xAA, 0x55, 0x55, 0x55, 0x55,
+        0xAA, 0xAA, 0xAA, 0xAA, 0x55, 0x55, 0x55, 0x55,
+        0xAA, 0xAA, 0xAA, 0xAA, 0x55, 0x55, 0x55, 0x55,
+        0xAA, 0xAA, 0xAA, 0xAA, 0x55, 0x55, 0x55, 0x55,
+        0xAA, 0xAA, 0xAA, 0xAA, 0x55, 0x55, 0x55, 0x55,
+        0xAA, 0xAA, 0xAA, 0xAA, 0x55, 0x55, 0x55, 0x55,
+        0xAA, 0xAA, 0xAA, 0xAA, 0x55, 0x55, 0x55, 0x55,
+        0xAA, 0xAA, 0xAA, 0xAA, 0x55, 0x55, 0x55, 0x55,
+        0xAA, 0xAA, 0xAA, 0xAA, 0x55, 0x55, 0x55, 0x55,
+        0xAA, 0xAA, 0xAA, 0xAA, 0x55, 0x55, 0x55, 0x55,
+        0xAA, 0xAA, 0xAA, 0xAA, 0x55, 0x55, 0x55, 0x55};
+    glEnable(GL_POLYGON_STIPPLE);
+    glPolygonStipple(halftone);
+
+    glColor3f(0.0, 0.0, 0.0);
+    GLfloat size = World::m_WallLength;
+    GLfloat pos = size / 2.0;
+
+    glColor3f(1.0, 0.0, 0.0);
 
     glPushMatrix();
-        glTranslatef(0.0, 0.0, -World::m_WallLength / 2.0);
-        glutSolidCube(World::m_WallLength);
+        glTranslated(-2.4,1.2,-6);
+        glRotated(60,1,0,0);
+        glRotated(a,0,0,1);
+        glutSolidSphere(1,slices,stacks);
     glPopMatrix();
+
+    glPushMatrix();
+        glTranslated(-2.4,-1.2,-6);
+        glRotated(60,1,0,0);
+        glRotated(a,0,0,1);
+        glutWireSphere(1,slices,stacks);
+    glPopMatrix();
+
+    glColor3f(0.1, 0.1, 0.1);
+    glPushMatrix();
+        glTranslatef(0.0, 0.0, -pos);
+        glScalef(1.0, 0.5, 0.001);
+        glutSolidCube(size);
+    glPopMatrix();
+    glPushMatrix();
+        glTranslatef(0.0, 0.0, pos);
+        glScalef(1.0, 0.5, 0.001);
+        glutSolidCube(size);
+    glPopMatrix();
+
+    glPushMatrix();
+        glTranslatef(0.0, -20.0, 0.0);
+        glScalef(1.0, 0.001, 1.0);
+        glutSolidCube(size);
+    glPopMatrix();
+
+
+    glPushMatrix();
+        glTranslatef(pos, 0.0, 0.0);
+        glScalef(0.001, 0.5, 1.0);
+        glutSolidCube(size);
+    glPopMatrix();
+    glPushMatrix();
+        glTranslatef(-pos, 0.0, 0.0);
+        glScalef(0.001, 0.5, 1.0);
+        glutSolidCube(size);
+    glPopMatrix();
+    glDisable(GL_POLYGON_STIPPLE);
+
+/*
+    glPushMatrix();
+        glColor3f(0.0, 1.0, 1.0);
+        glScalef(-1.0, -1.0, -1.0);
+        glutSolidCube(size);
+        glColor3f(0.0, 0.0, 0.0);
+        glutWireCube(size);
+    glPopMatrix();
+*/
+
+
+
+
+
 }

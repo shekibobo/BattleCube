@@ -20,22 +20,22 @@
 #include "include/World.h"
 #include <stdlib.h>
 
-#define ROOM_LENGTH 500
 
 static int slices = 16;
 static int stacks = 16;
-Player player = Player(0.0, 0.0, 5.0, ROOM_LENGTH);
+
 World world = World();
+
 bool keyStates[256];
 
 /* set up lighting and textures */
-GLfloat wallpos = ROOM_LENGTH / 2.0;
-const GLfloat light_ambient[]  = { 0.0f, 0.0f, 0.0f, 0.5f };
+GLfloat wallpos = world.GetPlayer()->GetBoundary();
+const GLfloat light_ambient[]  = { 1.0f, 1.0f, 1.0f, 1.0f };
 const GLfloat light_diffuse[]  = { 1.0f, 1.0f, 1.0f, 1.0f };
 const GLfloat light_specular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 
-GLfloat light_position0[] = { wallpos, 0.0, wallpos, 0.0f };
-const GLfloat light_position1[] = { -wallpos, 0.0, -wallpos, 0.0f };
+GLfloat light_position0[] = { 0.0, 20.0, 0.0, 0.0 };
+const GLfloat light_position1[] = { 0.0, 20, 0.0, 0.0f };
 const GLfloat light_position2[] = { -wallpos, 0.0, wallpos, 0.0f };
 const GLfloat light_position3[] = { wallpos, 0.0, -wallpos, 0.0f };
 
@@ -65,41 +65,19 @@ static void display(void)
 {
     const double t = glutGet(GLUT_ELAPSED_TIME) / 1000.0;
     const double a = t*90.0;
-    light_position0[0] = player.GetPosX();
-    light_position0[1] = player.GetPosY();
-    light_position0[2] = player.GetPosZ();
+
+    light_position0[0] = world.GetPlayer()->GetPosX();
+    light_position0[1] = world.GetPlayer()->GetPosY();
+    light_position0[2] = world.GetPlayer()->GetPosZ();
     light_position0[3] = 0.0f;
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
     glLoadIdentity();
+    world.GetPlayer()->Move(keyStates);
+
+    world.GetPlayer()->Draw();
     world.Draw();
-    player.Move();
-    gluLookAt(player.GetPosX(), player.GetPosY(), player.GetPosZ(),
-              player.GetPosX(), player.GetPosY(), player.GetPosZ() - 1.0,
-              0.0, 1.0, 0.0);
-
-    glPushMatrix();
-        glColor3f(0.0, 1.0, 1.0);
-        glScalef(-1.0, -1.0, -1.0);
-        glutSolidCube(ROOM_LENGTH);
-        glutWireCube(ROOM_LENGTH);
-    glPopMatrix();
-
-    glColor3f(1.0, 0.0, 0.0);
-
-    glPushMatrix();
-        glTranslated(-2.4,1.2,-6);
-        glRotated(60,1,0,0);
-        glRotated(a,0,0,1);
-        glutSolidSphere(1,slices,stacks);
-    glPopMatrix();
-
-    glPushMatrix();
-        glTranslated(-2.4,-1.2,-6);
-        glRotated(60,1,0,0);
-        glRotated(a,0,0,1);
-        glutWireSphere(1,slices,stacks);
-    glPopMatrix();
 
     glutSwapBuffers();
 }
@@ -114,34 +92,6 @@ static void key(unsigned char key, int x, int y)
             exit(0);
             break;
 
-        case '+':
-            slices++;
-            stacks++;
-            break;
-
-        case '-':
-            if (slices>3 && stacks>3)
-            {
-                slices--;
-                stacks--;
-            }
-            break;
-        case 'w':
-            if (!player.IsFreefalling())
-                player.SetDirZ(-1.0);
-            break;
-        case 's':
-            if (!player.IsFreefalling())
-                player.SetDirZ(1.0);
-            break;
-        case 'a':
-            if (!player.IsFreefalling())
-                player.SetDirX(-1.0);
-            break;
-        case 'd':
-            if (!player.IsFreefalling())
-                player.SetDirX(1.0);
-            break;
         default:
             keyStates[key] = true;
             break;
@@ -171,7 +121,7 @@ int main(int argc, char *argv[])
 {
     glutInit(&argc, argv);
     glutInitWindowSize(800,450);
-    glutInitWindowPosition(10,10);
+    glutInitWindowPosition(100,100);
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
 
     glutCreateWindow("GLUT Shapes");

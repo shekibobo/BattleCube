@@ -42,8 +42,11 @@
 			<Add directory="/usr/lib" />
 		</Linker>
 		<Unit filename="include/Player.h" />
+		<Unit filename="include/World.h" />
+		<Unit filename="include/tga.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Player.cpp" />
+		<Unit filename="src/World.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />

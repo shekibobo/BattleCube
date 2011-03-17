@@ -5,12 +5,15 @@
 #include <GL/glu.h>
 #include <GL/glut.h>
 
+#include "../include/World.h"
+
+class World;
 
 class Player
 {
     public:
         /** Default constructor */
-        Player(GLfloat PosX, GLfloat PosY, GLfloat PosZ, GLfloat Boundary);
+        Player(GLfloat PosX, GLfloat PosY, GLfloat PosZ, World *world);
         /** Default destructor */
         virtual ~Player();
 
@@ -42,6 +45,12 @@ class Player
         GLfloat GetDirZ() { return m_DirZ; }
         void SetDirZ(GLfloat val) { m_DirZ = val; }
 
+        void SetDir(GLfloat x, GLfloat y, GLfloat z) {
+            m_DirX = x;
+            m_DirY = y;
+            m_DirZ = z;
+        }
+
         GLfloat GetLookX() { return m_LookX; }
         void SetLookX(GLfloat val) { m_LookX = val; }
 
@@ -51,30 +60,28 @@ class Player
         GLfloat GetLookZ() { return m_LookZ; }
         void SetLookZ(GLfloat val) { m_LookZ = val; }
 
-        /** Set or Determine if Freefall is active */
-        bool IsFreefalling() { return isFreefalling; }
-        void SetFreefalling(bool val) { isFreefalling = val; }
+        void SetLook(GLfloat x, GLfloat y, GLfloat z) {
+            m_LookX = x;
+            m_LookY = y;
+            m_LookZ = z;
+        }
 
         /** Set and Get movement limits */
         void SetBoundary(GLfloat val) { m_Boundary = val; }
         GLfloat GetBoundary() { return m_Boundary; }
 
-        void Look(GLfloat x, GLfloat y, GLfloat z);
+        void Look();
+        GLfloat LookAngle() { return m_LookAngle; }
+        GLfloat SetLookAngle(GLfloat val) { m_LookAngle = val; }
 
         /** Movement methods */
-        void Move();
-        void Stop() {
-            //bounce
-            SetDirX(GetDirX() * -1.0);
-            SetDirY(GetDirY() * -1.0);
-            SetDirZ(GetDirZ() * -1.0);
-            Move();
-            //stop
-            SetFreefalling(false);
-            SetDirX(0.0);
-            SetDirY(0.0);
-            SetDirZ(0.0);
-        }
+        void Move(bool keyStates[]);
+
+        void Draw();
+        World Env();
+
+        bool inBounds(bool);
+
     protected:
     private:
         unsigned int m_Life; //!< Member variable "m_Life"
@@ -90,10 +97,13 @@ class Player
         GLfloat m_LookY;
         GLfloat m_LookZ;
 
-        GLfloat m_Boundary;
-        bool isFreefalling; //!< Member variable "isFreefalling?"
+        GLfloat m_LookAngle;
 
-        bool HasReachedBoundary();
+        GLfloat m_Boundary;
+
+
+
+        World *m_pWorld;
 };
 
 #endif // PLAYER_H
