@@ -1,7 +1,7 @@
 #include "../include/Drone.h"
 
-Drone::Drone(World * world)
-{
+
+Drone::Drone(World* world) {
     //ctor
     SetDir(((rand() % 200) - 100) / 100.0, 0.0, ((rand() % 200) - 100) / 100.0);
     Setposx(0.0); Setposy(-5.0); Setposz(0.0);
@@ -10,6 +10,15 @@ Drone::Drone(World * world)
     Setcolor(1.0, 1.0, 0.3, 0.1);
 }
 
+/*
+Drone::Drone(GLfloat xp, GLfloat yp, GLfloat zp,
+             GLfloat xd, GLfloat yd, GLfloat zd,
+             GLfloat rc, GLfloat gc, GLfloat bc, GLfloat alpha,
+             GLfloat size, World * world)
+{
+
+}
+*/
 Drone::~Drone()
 {
     //dtor
