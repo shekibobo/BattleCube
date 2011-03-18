@@ -8,12 +8,14 @@
 
 #include "Player.h"
 #include "Drone.h"
+#include "Projectile.h"
 #include <cstdio>
 
 using namespace std;
 
 class Player;
 class Drone;
+class Projectile;
 
 class World
 {
@@ -37,6 +39,10 @@ class World
         }
 
         vector<Drone*>& Drones() { return m_pvDrones; }
+        void NewDrones();
+
+        vector<Projectile*>& Bullets() { return m_pvBullets; }
+        void NewBullet();
 
 
 
@@ -50,6 +56,9 @@ class World
 
         vector<Drone*> m_pvDrones;
         vector<Drone*>::iterator it;
+
+        vector<Projectile*> m_pvBullets;
+        vector<Projectile*>::iterator bit;
 
 };
 

@@ -6,19 +6,10 @@ Drone::Drone(World* world) {
     SetDir(((rand() % 200) - 100) / 100.0, 0.0, ((rand() % 200) - 100) / 100.0);
     Setposx(0.0); Setposy(-5.0); Setposz(0.0);
     m_pWorld = world;
-    m_size = 20.0;
+    m_size = 6.0;
     Setcolor(1.0, 1.0, 0.3, 0.1);
 }
 
-/*
-Drone::Drone(GLfloat xp, GLfloat yp, GLfloat zp,
-             GLfloat xd, GLfloat yd, GLfloat zd,
-             GLfloat rc, GLfloat gc, GLfloat bc, GLfloat alpha,
-             GLfloat size, World * world)
-{
-
-}
-*/
 Drone::~Drone()
 {
     //dtor

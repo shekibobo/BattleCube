@@ -85,7 +85,10 @@ static void key(unsigned char key, int x, int y)
             break;
 
         case '+':
-            world.Drones().push_back(new Drone(&world));
+            world.NewDrones();
+            break;
+        case ' ':
+            world.NewBullet();
             break;
         case 't':
             world.GetPlayer()->SetFirstPerson(true);

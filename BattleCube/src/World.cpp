@@ -25,6 +25,14 @@ void World::SetTexture() {
 
 }
 
+void World::NewDrones() {
+    Drones().push_back(new Drone(this));
+}
+
+void World::NewBullet() {
+    Bullets().push_back(new Projectile(this));
+}
+
 void World::Draw() {
     static int slices = 16;
     static int stacks = 16;
@@ -85,5 +93,10 @@ void World::Draw() {
     for (it = Drones().begin(); it != Drones().end(); it++) {
         (*it)->Move();
         (*it)->Draw();
+    }
+
+    for (bit = Bullets().begin(); bit != Bullets().end(); bit++) {
+        (*bit)->Move();
+        (*bit)->Draw();
     }
 }

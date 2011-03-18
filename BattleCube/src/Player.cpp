@@ -40,12 +40,12 @@ void Player::Move(bool keyStates[]) {
         SetPosX(GetPosX() - GetDirX());
     }
 
-    if (keyStates['q'] && inBounds(false) ) {
+    if (keyStates['a'] && inBounds(false) ) {
         SetLookAngle(LookAngle() + PI / 45.0);
         SetDir( sin(LookAngle()), 0.0, cos(LookAngle()) );
     }
 
-    if (keyStates['e'] && inBounds(false) ) {
+    if (keyStates['d'] && inBounds(false) ) {
         SetLookAngle(LookAngle() - PI / 45.0);
         SetDir(sin(LookAngle()), 0.0, cos(LookAngle()) );
     }

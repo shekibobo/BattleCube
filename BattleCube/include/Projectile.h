@@ -1,5 +1,5 @@
-#ifndef DRONE_H
-#define DRONE_H
+#ifndef PROJECTILE_H
+#define PROJECTILE_H
 
 #include <GL/gl.h>
 #include <GL/glu.h>
@@ -9,16 +9,17 @@
 #include "World.h"
 
 #define PI 3.14159265
+#define SPEED 0.5
 
 class World;
 
-class Drone
+class Projectile
 {
     public:
         /** Default constructor */
-        Drone(World* world);
+        Projectile(World* world);
 
-        Drone(GLfloat xp, GLfloat yp, GLfloat zp,
+        Projectile(GLfloat xp, GLfloat yp, GLfloat zp,
              GLfloat xd, GLfloat yd, GLfloat zd,
              GLfloat rc, GLfloat gc, GLfloat bc, GLfloat alpha,
              GLfloat size, World * world)
@@ -31,7 +32,7 @@ class Drone
         }
 
         /** Default destructor */
-        virtual ~Drone();
+        virtual ~Projectile();
         /** Access m_posx
          * \return The current value of m_posx
          */
@@ -125,4 +126,4 @@ class Drone
         World * m_pWorld;
 };
 
-#endif // DRONE_H
+#endif // PROJECTILE_H
