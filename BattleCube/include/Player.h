@@ -82,6 +82,9 @@ class Player
 
         bool inBounds(bool);
 
+        bool SetFirstPerson(bool val) { m_FirstPerson = val; }
+        bool FirstPerson() { return m_FirstPerson; }
+
     protected:
     private:
         unsigned int m_Life; //!< Member variable "m_Life"
@@ -101,7 +104,7 @@ class Player
 
         GLfloat m_Boundary;
 
-
+        bool m_FirstPerson;
 
         World *m_pWorld;
 };

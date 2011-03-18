@@ -22,7 +22,7 @@ Player::Player(GLfloat PosX, GLfloat PosY, GLfloat PosZ, World *world)
     SetBoundary((Env().GetWallLength() / 2.0) - 2.0);
     printf("Boundary: %f\n", GetBoundary());
 
-
+    SetFirstPerson(true);
 }
 
 Player::~Player()
@@ -84,9 +84,20 @@ void Player::Look() {
     SetLookX(sin(LookAngle()) + GetPosX());
     SetLookZ(cos(LookAngle()) + GetPosZ());
 
-    gluLookAt(GetPosX(), GetPosY(), GetPosZ(),
-              GetLookX(), GetLookY(), GetLookZ(),
-              0.0, 1.0, 0.0);
+    if (FirstPerson()) {
+        gluLookAt(GetPosX(), GetPosY(), GetPosZ(),
+                  GetLookX(), GetLookY(), GetLookZ(),
+                  0.0, 1.0, 0.0);
+    } else {
+        gluLookAt(sin(LookAngle()) - GetPosX(), GetPosY(), cos(LookAngle()) - GetPosZ(),
+                  GetLookX(), GetLookY(), GetLookZ(),
+                  0.0, 1.0, 0.0);
+        glPushMatrix();
+            glColor3f(1.0, 0.5, 0.1);
+            glTranslatef(GetPosX(), GetPosY(), GetPosZ());
+            glutSolidCube(8.0);
+        glPopMatrix();
+    }
 
 
 

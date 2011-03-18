@@ -91,6 +91,12 @@ static void key(unsigned char key, int x, int y)
         case 'q':
             exit(0);
             break;
+        case 't':
+            world.GetPlayer()->SetFirstPerson(true);
+            break;
+        case 'y':
+            world.GetPlayer()->SetFirstPerson(false);
+            break;
 
         default:
             keyStates[key] = true;
