@@ -72,7 +72,7 @@ class Player
 
         void Look();
         GLfloat LookAngle() { return m_LookAngle; }
-        GLfloat SetLookAngle(GLfloat val) { m_LookAngle = val; }
+        void SetLookAngle(GLfloat val) { m_LookAngle = val; }
 
         /** Movement methods */
         void Move(bool keyStates[]);
@@ -82,7 +82,7 @@ class Player
 
         bool inBounds(bool);
 
-        bool SetFirstPerson(bool val) { m_FirstPerson = val; }
+        void SetFirstPerson(bool val) { m_FirstPerson = val; }
         bool FirstPerson() { return m_FirstPerson; }
 
     protected:

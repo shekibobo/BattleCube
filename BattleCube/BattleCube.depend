@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1300407845 source:/home/joshua/Documents/cis367/batttlecubes/BattleCube/main.cpp
+1300417358 source:/home/joshua/Documents/cis367/batttlecubes/BattleCube/main.cpp
 	<GL/gl.h>
 	<GL/glu.h>
 	<GL/glut.h>
@@ -160,26 +160,38 @@
 
 1285867030 /usr/include/GL/glu_mangle.h
 
-1300407759 /home/joshua/Documents/cis367/batttlecubes/BattleCube/include/Player.h
+1300410730 /home/joshua/Documents/cis367/batttlecubes/BattleCube/include/Player.h
 	<GL/gl.h>
 	<GL/glu.h>
 	<GL/glut.h>
 	"../include/World.h"
 
-1300395024 source:/home/joshua/Documents/cis367/batttlecubes/BattleCube/src/Player.cpp
+1300413221 source:/home/joshua/Documents/cis367/batttlecubes/BattleCube/src/Player.cpp
 	"../include/Player.h"
 	<cstdlib>
 	<cstdio>
 	<cmath>
 	<algorithm>
 
-1300407301 /home/joshua/Documents/cis367/batttlecubes/BattleCube/include/World.h
+1300448410 /home/joshua/Documents/cis367/batttlecubes/BattleCube/include/World.h
 	<GL/gl.h>
 	<GL/glu.h>
 	<GL/glut.h>
+	<vector>
 	"Player.h"
+	"Drone.h"
 	<cstdio>
 
-1300407424 source:/home/joshua/Documents/cis367/batttlecubes/BattleCube/src/World.cpp
+1300448444 source:/home/joshua/Documents/cis367/batttlecubes/BattleCube/src/World.cpp
 	"../include/World.h"
+
+1300448681 source:/home/joshua/Documents/cis367/batttlecubes/BattleCube/src/Drone.cpp
+	"../include/Drone.h"
+
+1300448690 /home/joshua/Documents/cis367/batttlecubes/BattleCube/include/Drone.h
+	<GL/gl.h>
+	<GL/glu.h>
+	<GL/glut.h>
+	<cmath>
+	"World.h"
 

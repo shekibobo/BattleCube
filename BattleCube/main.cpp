@@ -20,10 +20,6 @@
 #include "include/World.h"
 #include <stdlib.h>
 
-
-static int slices = 16;
-static int stacks = 16;
-
 World world = World();
 
 bool keyStates[256];
@@ -63,9 +59,6 @@ static void resize(int width, int height)
 
 static void display(void)
 {
-    const double t = glutGet(GLUT_ELAPSED_TIME) / 1000.0;
-    const double a = t*90.0;
-
     light_position0[0] = world.GetPlayer()->GetPosX();
     light_position0[1] = world.GetPlayer()->GetPosY();
     light_position0[2] = world.GetPlayer()->GetPosZ();
@@ -88,8 +81,11 @@ static void key(unsigned char key, int x, int y)
     switch (key)
     {
         case 27 :
-        case 'q':
             exit(0);
+            break;
+
+        case '+':
+            world.Drones().push_back(new Drone(&world));
             break;
         case 't':
             world.GetPlayer()->SetFirstPerson(true);
@@ -128,7 +124,7 @@ int main(int argc, char *argv[])
     glutInit(&argc, argv);
     glutInitWindowSize(800,450);
     glutInitWindowPosition(100,100);
-    glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
+    glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
 
     glutCreateWindow("GLUT Shapes");
 
@@ -145,6 +141,9 @@ int main(int argc, char *argv[])
 
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
+
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_BLEND);
 
     glEnable(GL_LIGHT0);
     glEnable(GL_LIGHT1);
