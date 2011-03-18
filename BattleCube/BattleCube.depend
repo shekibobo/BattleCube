@@ -173,7 +173,7 @@
 	<cmath>
 	<algorithm>
 
-1300451991 /home/joshua/Documents/cis367/batttlecubes/BattleCube/include/World.h
+1300453247 /home/joshua/Documents/cis367/batttlecubes/BattleCube/include/World.h
 	<GL/gl.h>
 	<GL/glu.h>
 	<GL/glut.h>
@@ -196,11 +196,11 @@
 	<cmath>
 	"World.h"
 
-1300452414 source:/home/joshua/Documents/cis367/batttlecubes/BattleCube/src/Projectile.cpp
+1300452741 source:/home/joshua/Documents/cis367/batttlecubes/BattleCube/src/Projectile.cpp
 	"../include/Projectile.h"
 	"../include/Drone.h"
 
-1300452203 /home/joshua/Documents/cis367/batttlecubes/BattleCube/include/Projectile.h
+1300452778 /home/joshua/Documents/cis367/batttlecubes/BattleCube/include/Projectile.h
 	<GL/gl.h>
 	<GL/glu.h>
 	<GL/glut.h>

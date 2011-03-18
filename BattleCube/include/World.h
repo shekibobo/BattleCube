@@ -44,6 +44,10 @@ class World
         vector<Projectile*>& Bullets() { return m_pvBullets; }
         void NewBullet();
 
+        GLfloat distance_squared(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2) {
+            return powf(x1 - x2, 2) + powf(y1 - y2, 2);
+        }
+
 
 
     protected:
@@ -59,6 +63,9 @@ class World
 
         vector<Projectile*> m_pvBullets;
         vector<Projectile*>::iterator bit;
+
+
+
 
 };
 

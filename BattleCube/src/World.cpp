@@ -98,5 +98,11 @@ void World::Draw() {
     for (bit = Bullets().begin(); bit != Bullets().end(); bit++) {
         (*bit)->Move();
         (*bit)->Draw();
+        for (it = Drones().begin(); it != Drones().end(); it++) {
+            if ( distance_squared((*it)->Posx(), (*bit)->Posx(), (*it)->Posz(), (*bit)->Posz()) <= (*it)->Size() + (*bit)->Size()) {
+                Bullets().erase(bit);
+                Drones().erase(it);
+            }
+        }
     }
 }
