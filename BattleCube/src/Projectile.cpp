@@ -6,13 +6,15 @@ Projectile::Projectile(World* world)
     //ctor
     m_pWorld = world;
     printf("setting direction\n");
-    SetDir(Env()->GetPlayer()->GetLookX(),
-           Env()->GetPlayer()->GetLookY(),
-           Env()->GetPlayer()->GetLookZ());
+    Player* player = Env()->GetPlayer();
+    SetPos(player->GetPosX(),
+           player->GetPosY(),
+           player->GetPosZ());
+    SetDir(player->GetLookX() - Posx(),
+           player->GetLookY() - Posy(),
+           player->GetLookZ() - Posz());
 
-    SetPos(Env()->GetPlayer()->GetPosX(),
-           Env()->GetPlayer()->GetPosY(),
-           Env()->GetPlayer()->GetPosZ());
+
 
     m_size = 2.0;
     Setcolor(1.0, 0.0, 0.0, 1.0);
