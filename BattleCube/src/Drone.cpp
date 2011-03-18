@@ -7,7 +7,7 @@ Drone::Drone(World* world) {
     Setposx(0.0); Setposy(-5.0); Setposz(0.0);
     m_pWorld = world;
     m_size = 6.0;
-    Setcolor(1.0, 1.0, 0.3, 0.1);
+    Setcolor(1.0, 0.0, 0.3, 0.5);
 }
 
 Drone::~Drone()
@@ -28,15 +28,24 @@ void Drone::Move() {
         Setdirx(-Dirx());
     if (Posz() <= -xbound + Size() || Posz() >= xbound - Size())
         Setdirz(-Dirz());
-    if (Posy() <= lowbound + Size()) Setdiry(Diry() + PI / 8.0);
-    Setdiry(Diry() + PI / 45.0);
+    if (Posy() <= lowbound + Size()) Setdiry((Diry() + PI / 8.0));
+
+    Setdiry(Diry() + PI / 20.0);
 }
 
 
 void Drone::Draw() {
+    static int slices = 16;
+    static int stacks = 16;
+    const double t = glutGet(GLUT_ELAPSED_TIME) / 1000.0;
+    const double a = t*90.0;
+
+    glColor4fv(m_color);
     glPushMatrix();
-        glColor4fv(m_color);
         glTranslatef(Posx(), Posy(), Posz());
-        glutSolidSphere(Size(), 10, 10);
+        glRotated(60,1,0,0);
+        glRotated(a,0,0,1);
+        glutSolidSphere(Size(),slices,stacks);
     glPopMatrix();
+
 }

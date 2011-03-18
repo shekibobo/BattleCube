@@ -34,30 +34,10 @@ void World::NewBullet() {
 }
 
 void World::Draw() {
-    static int slices = 16;
-    static int stacks = 16;
-    const double t = glutGet(GLUT_ELAPSED_TIME) / 1000.0;
-    const double a = t*90.0;
 
     glColor3f(0.0, 0.0, 0.0);
     GLfloat size = World::m_WallLength;
     GLfloat pos = size / 2.0;
-
-    glColor3f(1.0, 0.0, 0.0);
-
-    glPushMatrix();
-        glTranslated(-2.4,1.2,-6);
-        glRotated(60,1,0,0);
-        glRotated(a,0,0,1);
-        glutSolidSphere(1,slices,stacks);
-    glPopMatrix();
-
-    glPushMatrix();
-        glTranslated(-2.4,-1.2,-6);
-        glRotated(60,1,0,0);
-        glRotated(a,0,0,1);
-        glutWireSphere(1,slices,stacks);
-    glPopMatrix();
 
     glColor3f(0.1, 0.1, 0.1);
     glPushMatrix();
@@ -93,13 +73,14 @@ void World::Draw() {
     for (it = Drones().begin(); it != Drones().end(); it++) {
         (*it)->Move();
         (*it)->Draw();
+
     }
 
     for (bit = Bullets().begin(); bit != Bullets().end(); bit++) {
         (*bit)->Move();
         (*bit)->Draw();
         for (it = Drones().begin(); it != Drones().end(); it++) {
-            if ( distance_squared((*it)->Posx(), (*bit)->Posx(), (*it)->Posz(), (*bit)->Posz()) <= (*it)->Size() + (*bit)->Size()) {
+            if ( distance_squared((*it)->Posx(), (*bit)->Posx(), (*it)->Posz(), (*bit)->Posz()) <= ( (*it)->Size() + (*bit)->Size() ) ) {
                 Bullets().erase(bit);
                 Drones().erase(it);
             }

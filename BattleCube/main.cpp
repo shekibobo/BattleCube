@@ -1,15 +1,18 @@
 /*
- * GLUT Shapes Demo
+ * BattleCube
  *
- * Written by Nigel Stewart November 2003
+ * Written by Joshua Kovach March 2011
  *
- * This program is test harness for the sphere, cone
- * and torus shapes in GLUT.
+ * A first person shooter in a 3d environment.
  *
- * Spinning wireframe and smooth shaded shapes are
- * displayed until the ESC or q key is pressed.  The
- * number of geometry stacks and slices can be adjusted
- * using the + and - keys.
+ * You move around inside the Battle Cube with bouncing drones.
+ * Press SPACE to shoot a bullet.  Bullets will bounc around the room.
+ * Press '+' to spawn more drones.
+ * Move forward or backward by pressing 'w' or 's' respectively.
+ * Look left and right by pressing 'a' and 'd' respectively.
+ * Objects can detect collisions with walls and each other and will react accordingly.
+ *
+ * Press ESC to quit.
  */
 
 #include <GL/gl.h>
@@ -68,7 +71,6 @@ static void display(void)
 
     glLoadIdentity();
     world.GetPlayer()->Move(keyStates);
-
     world.GetPlayer()->Draw();
     world.Draw();
 
