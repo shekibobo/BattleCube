@@ -103,6 +103,8 @@ class Projectile
             m_posx = x; m_posy = y; m_posz = z;
         }
 
+        void setTexture();
+
         void SetSize(GLfloat val) { m_size = val; }
         GLfloat Size() { return m_size; }
 

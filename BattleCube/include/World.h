@@ -30,7 +30,6 @@ class World
         GLfloat GetWallLength() { return m_WallLength; }
         void SetWallLength(GLfloat val) { m_WallLength = val; }
         GLfloat FloorPos() { return m_FloorPos; }
-
         void SetTexture();
         void Draw();
 

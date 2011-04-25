@@ -2,6 +2,7 @@
 
 using namespace std;
 
+
 World::World()
 {
     //ctor
@@ -21,16 +22,16 @@ World::~World()
     //dtor
 }
 
-void World::SetTexture() {
-
-}
-
 void World::NewDrones() {
     Drones().push_back(new Drone(this));
 }
 
 void World::NewBullet() {
     Bullets().push_back(new Projectile(this));
+}
+
+void World::SetTexture(){
+
 }
 
 void World::Draw() {
@@ -43,6 +44,24 @@ void World::Draw() {
 
     glColor3f(0.1, 0.1, 0.1);
     glPushMatrix();
+        glTranslatef(0.0, FloorPos(), 0.0);
+        glScalef(1.0, 0.001, 1.0);
+        glutSolidCube(size);
+    glPopMatrix();
+/*
+    glPushMatrix();
+        glBegin(GL_QUADS);
+            glTexImage2d(GL_TEXTURE_2D, 0, GL_RGB, 340, 340, 0, GL_RGB, GL_UNSIGNED_BYTE, wallTexture);
+            glEnable(GL_TEXTURE_2D);
+            glTexCoord2f(0.0, 0.0);
+            glVertex3f()
+            glTexCoord2f(0.0, 1.0);
+            glTexCoord2f(1.0, 1.0);
+            glTexCoord2f(1.0, 0.0);
+        glEnd();
+    glPopMatrix();
+*/
+    glPushMatrix();
         glTranslatef(0.0, 0.0, -pos);
         glScalef(1.0, 0.5, 0.001);
         glutSolidCube(size);
@@ -53,11 +72,7 @@ void World::Draw() {
         glutSolidCube(size);
     glPopMatrix();
 
-    glPushMatrix();
-        glTranslatef(0.0, FloorPos(), 0.0);
-        glScalef(1.0, 0.001, 1.0);
-        glutSolidCube(size);
-    glPopMatrix();
+
 
 
     glPushMatrix();

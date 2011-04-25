@@ -1,9 +1,13 @@
 #include "../include/Projectile.h"
 #include "../include/Drone.h"
+#include "../include/World.h"
+
+GLubyte wallTexture[340][340][3];
 
 Projectile::Projectile(World* world)
 {
     //ctor
+    setTexture();
     m_pWorld = world;
     Player* player = Env()->GetPlayer();
     SetPos(player->GetPosX(),
@@ -45,7 +49,36 @@ void Projectile::Move() {
 void Projectile::Draw() {
     glPushMatrix();
         glColor4fv(m_color);
+        glEnable(GL_TEXTURE_2D);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 340, 340, 0, GL_RGB, GL_UNSIGNED_BYTE, wallTexture);
+        glEnable(GL_TEXTURE_GEN_S);
+        glEnable(GL_TEXTURE_GEN_T);
+
         glTranslatef(Posx(), Posy(), Posz());
         glutSolidSphere(Size(), 6, 6);
+
+        glDisable(GL_TEXTURE_2D);
+        glDisable(GL_TEXTURE_GEN_S);
+        glDisable(GL_TEXTURE_GEN_T);
     glPopMatrix();
+}
+
+void Projectile::setTexture(){
+    int i, j;
+    unsigned char data[3];
+    FILE *fp;
+    char file[256] = "/home/dave/Documents/cs367/final/BattleCube/BattleCube/images/wall.dat";
+    if((fp = fopen(file, "rb")) == NULL){
+        printf("file not found");
+        exit(0);
+    }
+
+    for(i = 0; i < 340; i++){
+        for(j = 0; j < 340; j++){
+            fread(data, sizeof(unsigned char), 3, fp);
+            wallTexture[i][j][0] = (GLubyte) data[0];
+            wallTexture[i][j][1] = (GLubyte) data[1];
+            wallTexture[i][j][2] = (GLubyte) data[2];
+        }
+    }
 }
