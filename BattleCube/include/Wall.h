@@ -59,6 +59,9 @@ class Wall
          */
         void Setdepth(GLfloat val) { m_depth = val; }
 
+        void Setrotation(GLfloat val) { m_rotation = val; }
+        GLfloat Getrotation() { return m_rotation; }
+
         void Draw();
     protected:
     private:
@@ -67,6 +70,7 @@ class Wall
         GLfloat m_posy; //!< Member variable "m_posy"
         GLfloat m_posz; //!< Member variable "m_posz"
         GLfloat m_depth; //!< Member variable "m_depth"
+        GLfloat m_rotation;
 };
 
 #endif // WALL_H

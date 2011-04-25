@@ -37,7 +37,7 @@ void World::Draw() {
 
     bool collision = false;
 
-    glColor3f(0.0, 0.0, 0.0);
+    glColor3f(0.5, 0.5, 0.5);
     GLfloat size = World::m_WallLength;
     GLfloat pos = size / 2.0;
 

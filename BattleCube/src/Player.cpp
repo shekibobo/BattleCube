@@ -107,9 +107,6 @@ void Player::Look() {
             glutSolidCube(8.0);
         glPopMatrix();
     }
-
-
-
 }
 
 World Player::Env()  { return *m_pWorld; }
