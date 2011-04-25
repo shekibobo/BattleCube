@@ -35,7 +35,7 @@ const GLfloat light_ambient[]  = { 0.1f, 0.1f, 0.0f, 1.0f };
 const GLfloat light_diffuse[]  = { 1.0f, 1.0f, 1.0f, 1.0f };
 const GLfloat light_specular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 
-GLfloat light_position0[] = { 0.0, 20.0, 0.0, 0.0 };
+GLfloat light_position0[] = { 0.0, 10.0, 0.0, 0.0 };
 const GLfloat light_position1[] = { 0.0, 20, 0.0, 0.0f };
 const GLfloat light_position2[] = { -wallpos, 0.0, wallpos, 0.0f };
 const GLfloat light_position3[] = { wallpos, 0.0, -wallpos, 0.0f };
@@ -43,9 +43,9 @@ const GLfloat light_position3[] = { wallpos, 0.0, -wallpos, 0.0f };
 
 
 const GLfloat mat_ambient[]    = { 0.1f, 0.1f, 0.0f, 1.0f };
-const GLfloat mat_diffuse[]    = { 0.8f, 0.8f, 0.8f, 1.0f };
+const GLfloat mat_diffuse[]    = { 0.8f, 0.1f, 0.8f, 1.0f };
 const GLfloat mat_specular[]   = { 1.0f, 1.0f, 1.0f, 1.0f };
-const GLfloat high_shininess[] = { 10.0f };
+const GLfloat high_shininess[] = { 25.0f };
 
 /* GLUT callback Handlers */
 
