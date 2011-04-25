@@ -46,6 +46,16 @@ void Drone::Draw() {
         glRotated(60,1,0,0);
         glRotated(a,0,0,1);
         glutSolidSphere(Size(),slices,stacks);
+        glColor3f(0.0, 0.0, 0.0);
+        glutWireSphere(Size(), slices, stacks);
+        glPushMatrix();
+            glTranslatef(0.0, 5.0, 0.0);
+            glutSolidCube(3.0);
+        glPopMatrix();
+        glPushMatrix();
+            glTranslatef(0.0, -5.0, 0.0);
+            glutSolidCube(3.0);
+        glPopMatrix();
     glPopMatrix();
 
 }

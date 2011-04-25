@@ -41,11 +41,15 @@
 			<Add library="Xxf86vm" />
 			<Add directory="/usr/lib" />
 		</Linker>
+		<Unit filename="include/Drone.h" />
 		<Unit filename="include/Player.h" />
+		<Unit filename="include/Projectile.h" />
 		<Unit filename="include/World.h" />
 		<Unit filename="include/tga.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Drone.cpp" />
 		<Unit filename="src/Player.cpp" />
+		<Unit filename="src/Projectile.cpp" />
 		<Unit filename="src/World.cpp" />
 		<Extensions>
 			<code_completion />

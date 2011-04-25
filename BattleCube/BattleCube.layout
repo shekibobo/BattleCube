@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="include/Player.h" open="1" top="0" tabpos="3">
-		<Cursor position="2422" topLine="64" />
+	<File name="include/Drone.h" open="1" top="0" tabpos="6">
+		<Cursor position="3066" topLine="90" />
 	</File>
-	<File name="include/World.h" open="1" top="0" tabpos="4">
-		<Cursor position="774" topLine="9" />
+	<File name="include/Player.h" open="1" top="0" tabpos="3">
+		<Cursor position="2227" topLine="0" />
+	</File>
+	<File name="include/Projectile.h" open="1" top="0" tabpos="8">
+		<Cursor position="3605" topLine="91" />
+	</File>
+	<File name="include/World.h" open="1" top="1" tabpos="4">
+		<Cursor position="1350" topLine="34" />
 	</File>
 	<File name="main.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="2137" topLine="51" />
+		<Cursor position="346" topLine="39" />
 	</File>
-	<File name="src/Player.cpp" open="1" top="1" tabpos="2">
-		<Cursor position="498" topLine="15" />
+	<File name="src/Drone.cpp" open="1" top="0" tabpos="7">
+		<Cursor position="980" topLine="0" />
+	</File>
+	<File name="src/Player.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="994" topLine="24" />
+	</File>
+	<File name="src/Projectile.cpp" open="1" top="0" tabpos="9">
+		<Cursor position="911" topLine="0" />
 	</File>
 	<File name="src/World.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="2724" topLine="68" />
+		<Cursor position="1486" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>
