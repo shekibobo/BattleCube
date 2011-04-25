@@ -47,6 +47,8 @@ void Projectile::Move() {
 }
 
 void Projectile::Draw() {
+    const double t = glutGet(GLUT_ELAPSED_TIME) / 1000.0;
+    const double a = t*90.0;
     glPushMatrix();
         glColor4fv(m_color);
         glEnable(GL_TEXTURE_2D);
@@ -55,7 +57,9 @@ void Projectile::Draw() {
         glEnable(GL_TEXTURE_GEN_T);
 
         glTranslatef(Posx(), Posy(), Posz());
+        glRotatef(a, 1.0, 0.0, 0.0);
         glutSolidSphere(Size(), 12, 12);
+        glutWireSphere(Size(), 12, 12);
 
         glDisable(GL_TEXTURE_2D);
         glDisable(GL_TEXTURE_GEN_S);
