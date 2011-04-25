@@ -70,23 +70,30 @@ void World::Draw() {
     glPopMatrix();
 
 
+    bit = Bullets().end();
+    it = Drones().begin();
     for (it = Drones().begin(); it != Drones().end(); it++) {
         (*it)->Move();
         (*it)->Draw();
-
     }
 
 
-    for (bit = Bullets().begin(); bit != Bullets().end(); bit++) {
-        (*bit)->Move();
-        (*bit)->Draw();
-        /*
-        for (it = Drones().begin(); it != Drones().end(); it++) {
-            if ( distance_squared((*it)->Posx(), (*bit)->Posx(), (*it)->Posz(), (*bit)->Posz()) <= ( (*it)->Size() + (*bit)->Size() ) ) {
-                Bullets().erase(bit);
-                Drones().erase(it);
-            }
+//    for (bit = Bullets().begin(); bit != Bullets().end(); bit++) {
+//        (*bit)->Move();
+//        (*bit)->Draw();
+
+    bit = Bullets().end();
+    it = Drones().begin();
+    while( it != Drones().end() && bit != Bullets().end() )
+    {
+        if ( distance_squared((*it)->Posx(), (*bit)->Posx(), (*it)->Posz(), (*bit)->Posz()) <= ( (*it)->Size() + (*bit)->Size() ) ) {
+            bit = Bullets().erase(bit);
+            it = Drones().erase(it);
         }
-        */
+        else
+        {
+            ++bit;
+            ++it;
+        }
     }
 }
