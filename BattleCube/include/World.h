@@ -16,6 +16,7 @@ using namespace std;
 class Player;
 class Drone;
 class Projectile;
+class Wall;
 
 class World
 {
@@ -63,6 +64,9 @@ class World
 
         vector<Projectile*> m_pvBullets;
         vector<Projectile*>::iterator bit;
+
+        vector<Wall*> m_pvWalls;
+        vector<Wall*>::iterator wit;
 
 
 

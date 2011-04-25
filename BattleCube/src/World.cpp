@@ -94,13 +94,12 @@ void World::Draw() {
     while( it != Drones().end() )
     {
         collision = false;
-        bit = Bullets().end();
+        bit = Bullets().begin();
         while ( bit != Bullets().end() ) {
-            if ( distance_squared((*it)->Posx(), (*it)->Posz(), (*bit)->Posx(), (*bit)->Posz()) >= pow((*it)->Size() + (*bit)->Size(), 2) ) {
+            if ( distance_squared((*it)->Posx(), (*it)->Posz(), (*bit)->Posx(), (*bit)->Posz()) <= pow((*it)->Size() + (*bit)->Size(), 2) ) {
                 Bullets().erase(bit);
                 it = Drones().erase(it);
                 collision = true;
-                printf("pop!");
                 break;
             }
             else
