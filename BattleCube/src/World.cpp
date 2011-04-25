@@ -69,12 +69,13 @@ void World::Draw() {
         glutSolidCube(size);
     glPopMatrix();
 
-
-    bit = Bullets().end();
-    it = Drones().begin();
     for (it = Drones().begin(); it != Drones().end(); it++) {
         (*it)->Move();
         (*it)->Draw();
+    }
+    for (bit = Bullets().begin(); bit != Bullets().end(); bit++) {
+        (*bit)->Move();
+        (*bit)->Draw();
     }
 
 
@@ -86,9 +87,10 @@ void World::Draw() {
     it = Drones().begin();
     while( it != Drones().end() && bit != Bullets().end() )
     {
-        if ( distance_squared((*it)->Posx(), (*bit)->Posx(), (*it)->Posz(), (*bit)->Posz()) <= ( (*it)->Size() + (*bit)->Size() ) ) {
+        if ( distance_squared((*it)->Posx(), (*it)->Posz(), (*bit)->Posx(), (*bit)->Posz()) <= pow(((*it)->Size() + (*bit)->Size()), 2) ) {
             bit = Bullets().erase(bit);
             it = Drones().erase(it);
+            printf("pop!");
         }
         else
         {
