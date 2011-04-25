@@ -29,10 +29,17 @@ void Projectile::Move() {
 
     GLfloat xbound = Env()->GetWallLength() / 2.0;
 
-    if (Posx() <= -xbound + Size() || Posx() >= xbound - Size())
+    if (Posx() <= -xbound + Size() || Posx() >= xbound - Size()) {
         Setdirx(0); //Setdirx(-Dirx());
-    if (Posz() <= -xbound + Size() || Posz() >= xbound - Size())
-        Setdirz(0); //Setdirz(-Dirz());
+        Setdirz(0);
+    }
+    if (Posz() <= -xbound + Size() || Posz() >= xbound - Size()) {
+        Setdirx(0); //Setdirx(-Dirx());
+        Setdirz(0);
+    }
+    if (Dirx() == 0 && Dirz() == 0) {
+        SetSize(Size() + 2);
+    }
 }
 
 void Projectile::Draw() {

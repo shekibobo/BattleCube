@@ -75,9 +75,13 @@ void World::Draw() {
         (*it)->Move();
         (*it)->Draw();
     }
-    for (bit = Bullets().begin(); bit != Bullets().end(); bit++) {
+
+    bit = Bullets().begin();
+    while ( bit != Bullets().end() ) {
         (*bit)->Move();
         (*bit)->Draw();
+        if ((*bit)->Size() > 50) bit = Bullets().erase(bit);
+        else ++bit;
     }
 
 
@@ -92,7 +96,7 @@ void World::Draw() {
         collision = false;
         bit = Bullets().end();
         while ( bit != Bullets().end() ) {
-            if ( distance_squared((*it)->Posx(), (*it)->Posz(), (*bit)->Posx(), (*bit)->Posz()) <= pow((*it)->Size() + (*bit)->Size(), 2) ) {
+            if ( distance_squared((*it)->Posx(), (*it)->Posz(), (*bit)->Posx(), (*bit)->Posz()) >= pow((*it)->Size() + (*bit)->Size(), 2) ) {
                 Bullets().erase(bit);
                 it = Drones().erase(it);
                 collision = true;
