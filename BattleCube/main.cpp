@@ -142,6 +142,7 @@ float lastX = 0;
 float lastY = 0;
 float cameraXRot = 0;
 float cameraYRot = 0;
+
 void mouseMove(int x, int y){
     Player *player = world.GetPlayer();
     float temp;
@@ -181,7 +182,7 @@ int main(int argc, char *argv[])
     glutInitWindowPosition(100,100);
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
 
-    glutCreateWindow("GLUT Shapes");
+    glutCreateWindow("Battle Cube!!!");
 
     glutReshapeFunc(resize);
     glutDisplayFunc(display);

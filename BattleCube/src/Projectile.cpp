@@ -55,7 +55,7 @@ void Projectile::Draw() {
         glEnable(GL_TEXTURE_GEN_T);
 
         glTranslatef(Posx(), Posy(), Posz());
-        glutSolidSphere(Size(), 6, 6);
+        glutSolidSphere(Size(), 12, 12);
 
         glDisable(GL_TEXTURE_2D);
         glDisable(GL_TEXTURE_GEN_S);
@@ -67,8 +67,8 @@ void Projectile::setTexture(){
     int i, j;
     unsigned char data[3];
     FILE *fp;
-    char file[256] = "/home/dave/Documents/cs367/final/BattleCube/BattleCube/images/wall.dat";
-    if((fp = fopen(file, "rb")) == NULL){
+    char file[256] = "plasma.dat";
+    if((fp = fopen(file, "rb")) == NULL) {
         printf("file not found");
         exit(0);
     }
