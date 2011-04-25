@@ -35,6 +35,8 @@ void World::NewBullet() {
 
 void World::Draw() {
 
+    bool collision = false;
+
     glColor3f(0.0, 0.0, 0.0);
     GLfloat size = World::m_WallLength;
     GLfloat pos = size / 2.0;
@@ -83,19 +85,26 @@ void World::Draw() {
 //        (*bit)->Move();
 //        (*bit)->Draw();
 
-    bit = Bullets().end();
+
     it = Drones().begin();
-    while( it != Drones().end() && bit != Bullets().end() )
+    while( it != Drones().end() )
     {
-        if ( distance_squared((*it)->Posx(), (*it)->Posz(), (*bit)->Posx(), (*bit)->Posz()) <= pow(((*it)->Size() + (*bit)->Size()), 2) ) {
-            bit = Bullets().erase(bit);
-            it = Drones().erase(it);
-            printf("pop!");
+        collision = false;
+        bit = Bullets().end();
+        while ( bit != Bullets().end() ) {
+            if ( distance_squared((*it)->Posx(), (*it)->Posz(), (*bit)->Posx(), (*bit)->Posz()) <= pow((*it)->Size() + (*bit)->Size(), 2) ) {
+                Bullets().erase(bit);
+                it = Drones().erase(it);
+                collision = true;
+                printf("pop!");
+                break;
+            }
+            else
+            {
+                ++bit;
+            }
         }
-        else
-        {
-            ++bit;
-            ++it;
-        }
+        if (!collision) ++it;
+
     }
 }
