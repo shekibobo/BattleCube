@@ -4,6 +4,7 @@ GLubyte droneTexture[340][340][3];
 
 Drone::Drone(World* world) {
     //ctor
+    setTexture();
     SetDir(((rand() % 200) - 100) / 100.0, 0.0, ((rand() % 200) - 100) / 100.0);
     Setposx(0.0); Setposy(-5.0); Setposz(0.0);
     m_pWorld = world;
