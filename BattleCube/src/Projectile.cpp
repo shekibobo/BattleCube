@@ -20,7 +20,7 @@ Projectile::Projectile(World* world)
            player->GetLookZ() - Posz());
 
     m_size = 2.0;
-    Setcolor(1.0, 0.0, 0.0, 1.0);
+    Setcolor(1.0, 0.0, 0.0, 0.6);
 }
 
 Projectile::~Projectile()
