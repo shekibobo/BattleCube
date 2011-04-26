@@ -195,8 +195,6 @@ int main(int argc, char *argv[])
     glutMouseFunc(mouseClick);
 
     glClearColor(1,1,1,1);
-    glEnable(GL_CULL_FACE);
-    glCullFace(GL_BACK);
 
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);

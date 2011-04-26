@@ -14,7 +14,7 @@ Projectile::Projectile(World* world)
            player->GetPosY(),
            player->GetPosZ());
     SetDir(player->GetLookX() - Posx(),
-           player->GetLookY() - Posy(),
+           player->GetLookY() - Posy() + 0.2,
            player->GetLookZ() - Posz());
 
     m_size = 2.0;
@@ -41,9 +41,11 @@ void Projectile::Move() {
         Setdirx(0); //Setdirx(-Dirx());
         Setdirz(0);
     }
+    if (Posy() <= Env()->FloorPos()) Stop();
     if (Dirx() == 0 && Dirz() == 0) {
         SetSize(Size() + 2);
     }
+    Setdiry(Diry() - 0.01);
 }
 
 void Projectile::Draw() {

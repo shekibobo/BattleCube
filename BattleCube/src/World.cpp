@@ -69,15 +69,12 @@ void World::Draw() {
 
     bool collision = false;
 
-
-
-    glColor3f(0.5, 0.5, 0.5);
     GLfloat size = World::m_WallLength;
     GLfloat pos = size / 2.0;
 
     glColor3f(0.1, 0.1, 0.1);
     glPushMatrix();
-        glBegin(GL_QUADS);
+        glBegin(GL_POLYGON);
             glVertex3f(-pos, FloorPos(), -pos);
             glVertex3f(pos, FloorPos(), -pos);
             glVertex3f(pos, FloorPos(), pos);
