@@ -119,9 +119,10 @@ static void keyUp(unsigned char key, int x, int y) {
     keyStates[key] = false;
 }
 
-static void idle(void)
+static void timer(int val)
 {
     glutPostRedisplay();
+    glutTimerFunc(17, timer, 1);
 }
 
 void init()
@@ -189,12 +190,15 @@ int main(int argc, char *argv[])
     glutKeyboardFunc(key);
     glutIgnoreKeyRepeat(1);
     glutKeyboardUpFunc(keyUp);
-    glutIdleFunc(idle);
+    glutTimerFunc(17, timer, 1);
     glutPassiveMotionFunc(mouseMove);
     glutSetCursor(GLUT_CURSOR_NONE);
     glutMouseFunc(mouseClick);
 
     glClearColor(1,1,1,1);
+
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_BACK);
 
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);

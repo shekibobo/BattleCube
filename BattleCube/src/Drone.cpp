@@ -11,7 +11,7 @@ Drone::Drone(World* world) {
     Setposx(0.0); Setposy(0.0); Setposz(0.0);
     m_pWorld = world;
     m_size = 6.0;
-    Setcolor(1.0, 0.0, 0.3, 0.5);
+    Setcolor(1.0, 0.0, 0.3, 0.8);
 }
 
 Drone::~Drone()

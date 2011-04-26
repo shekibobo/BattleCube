@@ -9,7 +9,7 @@
 #include "World.h"
 
 #define PI 3.14159265
-#define SPEED 3.0
+#define SPEED 5.0
 
 class World;
 

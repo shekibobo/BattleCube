@@ -77,10 +77,10 @@ void World::Draw() {
         glEnable(GL_TEXTURE_2D);
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 340, 340, 0, GL_RGB, GL_UNSIGNED_BYTE, groundTexture);
         glBegin(GL_QUADS);
-            glTexCoord2f(0.0, 0.0); glVertex3f(-pos, FloorPos(), -pos);
-            glTexCoord2f(5.0, 0.0); glVertex3f(pos, FloorPos(), -pos);
-            glTexCoord2f(5.0, 5.0); glVertex3f(pos, FloorPos(), pos);
             glTexCoord2f(0.0, 5.0); glVertex3f(-pos, FloorPos(), pos);
+            glTexCoord2f(5.0, 5.0); glVertex3f(pos, FloorPos(), pos);
+            glTexCoord2f(5.0, 0.0); glVertex3f(pos, FloorPos(), -pos);
+            glTexCoord2f(0.0, 0.0); glVertex3f(-pos, FloorPos(), -pos);
 
             glTexCoord2f(0.0, 0.0); glVertex3f(-pos, 50, -pos);
             glTexCoord2f(5.0, 0.0); glVertex3f(pos, 50, -pos);
@@ -102,41 +102,41 @@ void World::Draw() {
         glEnable(GL_TEXTURE_2D);
         glBegin(GL_POLYGON);
             //wall1
-            glTexCoord2f(0.0, 0.0);
-            glVertex3f(-pos, 50, -pos);
-            glTexCoord2f(2.0, 0.0);
-            glVertex3f(pos, 50, -pos);
-            glTexCoord2f(2.0, 1.0);
-            glVertex3f(pos, FloorPos(), -pos);
             glTexCoord2f(0.0, 1.0);
             glVertex3f(-pos, FloorPos(), -pos);
+            glTexCoord2f(5.0, 1.0);
+            glVertex3f(pos, FloorPos(), -pos);
+            glTexCoord2f(5.0, 0.0);
+            glVertex3f(pos, 50, -pos);
+            glTexCoord2f(0.0, 0.0);
+            glVertex3f(-pos, 50, -pos);
 
             //wall2
             glTexCoord2f(0.0, 0.0);
             glVertex3f(-pos, 50, pos);
-            glTexCoord2f(2.0, 0.0);
+            glTexCoord2f(5.0, 0.0);
             glVertex3f(pos, 50, pos);
-            glTexCoord2f(2.0, 1.0);
+            glTexCoord2f(5.0, 1.0);
             glVertex3f(pos, FloorPos(), pos);
             glTexCoord2f(0.0, 1.0);
             glVertex3f(-pos, FloorPos(), pos);
 
             //wall3
-            glTexCoord2f(0.0, 0.0);
-            glVertex3f(pos, 50, -pos);
-            glTexCoord2f(2.0, 0.0);
-            glVertex3f(pos, 50, pos);
-            glTexCoord2f(2.0, 1.0);
-            glVertex3f(pos, FloorPos(), pos);
             glTexCoord2f(0.0, 1.0);
             glVertex3f(pos, FloorPos(), -pos);
+            glTexCoord2f(5.0, 1.0);
+            glVertex3f(pos, FloorPos(), pos);
+            glTexCoord2f(5.0, 0.0);
+            glVertex3f(pos, 50, pos);
+            glTexCoord2f(0.0, 0.0);
+            glVertex3f(pos, 50, -pos);
 
             //wall4
             glTexCoord2f(0.0, 0.0);
             glVertex3f(-pos, 50, -pos);
-            glTexCoord2f(2.0, 0.0);
+            glTexCoord2f(5.0, 0.0);
             glVertex3f(-pos, 50, pos);
-            glTexCoord2f(2.0, 1.0);
+            glTexCoord2f(5.0, 1.0);
             glVertex3f(-pos, FloorPos(), pos);
             glTexCoord2f(0.0, 1.0);
             glVertex3f(-pos, FloorPos(), -pos);
