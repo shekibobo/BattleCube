@@ -99,6 +99,10 @@ class Projectile
             m_dirx = x; m_diry = y; m_dirz = z;
         }
 
+        void Stop() {
+            SetDir(0.0, 0.0, 0.0);
+        }
+
         void SetPos(GLfloat x, GLfloat y, GLfloat z) {
             m_posx = x; m_posy = y; m_posz = z;
         }

@@ -112,7 +112,7 @@ void World::Draw() {
         bit = Bullets().begin();
         while ( bit != Bullets().end() ) {
             if ( distance_squared((*it)->Posx(), (*it)->Posz(), (*bit)->Posx(), (*bit)->Posz()) <= pow((*it)->Size() + (*bit)->Size(), 2) ) {
-                Bullets().erase(bit);
+                (*bit)->Stop();
                 it = Drones().erase(it);
                 collision = true;
                 break;

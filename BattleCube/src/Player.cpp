@@ -41,13 +41,13 @@ void Player::Move(bool keyStates[]) {
     }
 
     if (keyStates['a'] && inBounds(false) ) {
-        SetLookAngle(LookAngle() + PI / 45.0);
-        SetDir( sin(LookAngle()), 0.0, cos(LookAngle()) );
+        SetPosZ(GetPosZ() - GetDirX());
+        SetPosX(GetPosX() + GetDirZ());
     }
 
     if (keyStates['d'] && inBounds(false) ) {
-        SetLookAngle(LookAngle() - PI / 45.0);
-        SetDir(sin(LookAngle()), 0.0, cos(LookAngle()) );
+        SetPosZ(GetPosZ() + GetDirX());
+        SetPosX(GetPosX() - GetDirZ());
     }
 
     if (keyStates['a']) {
