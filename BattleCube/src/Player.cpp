@@ -31,32 +31,28 @@ Player::~Player()
 }
 
 void Player::Move(bool keyStates[]) {
+    // move forward
     if ( inBounds(true) && keyStates['w']) {
         SetPosZ(GetPosZ() + GetDirZ());
         SetPosX(GetPosX() + GetDirX());
     }
+
+    // move backward
     if ( inBounds(false) && keyStates['s']) {
         SetPosZ(GetPosZ() - GetDirZ());
         SetPosX(GetPosX() - GetDirX());
     }
 
+    // strafe left
     if (keyStates['a'] && inBounds(false) ) {
-        SetLookAngle(LookAngle() + PI / 45.0);
-        SetDir( sin(LookAngle()), 0.0, cos(LookAngle()) );
+        SetPosZ(GetPosZ() - GetDirX());
+        SetPosX(GetPosX() + GetDirZ());
     }
 
+    // strafe right
     if (keyStates['d'] && inBounds(false) ) {
-        SetLookAngle(LookAngle() - PI / 45.0);
-        SetDir(sin(LookAngle()), 0.0, cos(LookAngle()) );
-    }
-
-    if (keyStates['a']) {
-
-    }
-
-    if (keyStates['d']) {
-
-
+        SetPosZ(GetPosZ() + GetDirX());
+        SetPosX(GetPosX() - GetDirZ());
     }
 }
 

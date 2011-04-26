@@ -31,7 +31,7 @@ bool keyStates[256];
 
 /* set up lighting and textures */
 GLfloat wallpos = world.GetPlayer()->GetBoundary();
-const GLfloat light_ambient[]  = { 0.1f, 0.1f, 0.0f, 1.0f };
+const GLfloat light_ambient[]  = { 0.2f, 0.2f, 0.2f, 1.0f };
 const GLfloat light_diffuse[]  = { 1.0f, 1.0f, 1.0f, 1.0f };
 const GLfloat light_specular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 

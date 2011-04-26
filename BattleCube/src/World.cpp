@@ -132,4 +132,43 @@ void World::Draw() {
     glPopMatrix();
 */
 
+    for (it = Drones().begin(); it != Drones().end(); it++) {
+        (*it)->Move();
+        (*it)->Draw();
+    }
+
+    bit = Bullets().begin();
+    while ( bit != Bullets().end() ) {
+        (*bit)->Move();
+        (*bit)->Draw();
+        if ((*bit)->Size() > 50) bit = Bullets().erase(bit);
+        else ++bit;
+    }
+
+
+//    for (bit = Bullets().begin(); bit != Bullets().end(); bit++) {
+//        (*bit)->Move();
+//        (*bit)->Draw();
+
+
+    it = Drones().begin();
+    while( it != Drones().end() )
+    {
+        collision = false;
+        bit = Bullets().begin();
+        while ( bit != Bullets().end() ) {
+            if ( distance_squared((*it)->Posx(), (*it)->Posz(), (*bit)->Posx(), (*bit)->Posz()) <= pow((*it)->Size() + (*bit)->Size(), 2) ) {
+                (*bit)->Stop();
+                it = Drones().erase(it);
+                collision = true;
+                break;
+            }
+            else
+            {
+                ++bit;
+            }
+        }
+        if (!collision) ++it;
+
+    }
 }

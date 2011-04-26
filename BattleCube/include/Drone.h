@@ -108,6 +108,8 @@ class Drone
         void Move();
         void Draw();
 
+        void setTexture();
+
         World* Env() { return m_pWorld; }
 
     protected:
