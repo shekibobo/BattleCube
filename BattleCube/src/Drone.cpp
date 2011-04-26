@@ -1,12 +1,14 @@
 #include "../include/Drone.h"
 
+#define GRAVITY 0.05
+
 GLubyte droneTexture[340][340][3];
 
 Drone::Drone(World* world) {
     //ctor
     setTexture();
     SetDir(((rand() % 200) - 100) / 100.0, 0.0, ((rand() % 200) - 100) / 100.0);
-    Setposx(0.0); Setposy(-5.0); Setposz(0.0);
+    Setposx(0.0); Setposy(0.0); Setposz(0.0);
     m_pWorld = world;
     m_size = 6.0;
     Setcolor(1.0, 0.0, 0.3, 0.5);
@@ -20,7 +22,7 @@ Drone::~Drone()
 
 void Drone::Move() {
     Setposx(Posx() + Dirx());
-    Setposy( Posy() + sin(Diry()) );
+    Setposy(Posy() + Diry());
     Setposz(Posz() + Dirz());
 
     GLfloat xbound = Env()->GetWallLength() / 2.0;
@@ -30,9 +32,12 @@ void Drone::Move() {
         Setdirx(-Dirx());
     if (Posz() <= -xbound + Size() || Posz() >= xbound - Size())
         Setdirz(-Dirz());
-    if (Posy() <= lowbound + Size()) Setdiry((Diry() + PI / 8.0));
+    if (Posy() <= lowbound + Size()) {
+        Setposy(lowbound + Size());
+        Setdiry(-Diry() + GRAVITY); // add one so it doesn't lose its bounce
+    }
 
-    Setdiry(Diry() + PI / 20.0);
+    Setdiry(Diry() - GRAVITY);
 }
 
 

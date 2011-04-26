@@ -2,6 +2,8 @@
 #include "../include/Drone.h"
 #include "../include/World.h"
 
+#define GRAVITY 0.015
+
 GLubyte projectileTexture[340][340][3];
 
 Projectile::Projectile(World* world)
@@ -45,7 +47,7 @@ void Projectile::Move() {
     if (Dirx() == 0 && Dirz() == 0) {
         SetSize(Size() + 2);
     }
-    Setdiry(Diry() - 0.01);
+    Setdiry(Diry() - GRAVITY);
 }
 
 void Projectile::Draw() {

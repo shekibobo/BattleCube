@@ -91,9 +91,9 @@ void World::Draw() {
     */
 
     glPushMatrix();
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 340, 340, 0, GL_RGB, GL_UNSIGNED_BYTE, wallTexture);
+        glEnable(GL_TEXTURE_2D);
         glBegin(GL_POLYGON);
-            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 340, 340, 0, GL_RGB, GL_UNSIGNED_BYTE, wallTexture);
-            glEnable(GL_TEXTURE_2D);
             glTexCoord2f(0.0, 0.0);
             glVertex3f(-pos, 50, -pos);
             glTexCoord2f(1.0, 0.0);
@@ -102,8 +102,8 @@ void World::Draw() {
             glVertex3f(pos, 0, -pos);
             glTexCoord2f(0.0, 1.0);
             glVertex3f(-pos, 0, -pos);
-            glDisable(GL_TEXTURE_2D);
         glEnd();
+        glDisable(GL_TEXTURE_2D);
     glPopMatrix();
 /*
     glPushMatrix();
