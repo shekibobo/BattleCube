@@ -2,7 +2,7 @@
 #include "../include/Drone.h"
 #include "../include/World.h"
 
-GLubyte wallTexture[340][340][3];
+GLubyte projectileTexture[340][340][3];
 
 Projectile::Projectile(World* world)
 {
@@ -52,7 +52,7 @@ void Projectile::Draw() {
     glPushMatrix();
         glColor4fv(m_color);
         glEnable(GL_TEXTURE_2D);
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 340, 340, 0, GL_RGB, GL_UNSIGNED_BYTE, wallTexture);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 340, 340, 0, GL_RGB, GL_UNSIGNED_BYTE, projectileTexture);
         glEnable(GL_TEXTURE_GEN_S);
         glEnable(GL_TEXTURE_GEN_T);
 
@@ -67,7 +67,7 @@ void Projectile::Draw() {
     glPopMatrix();
 }
 
-void Projectile::setTexture(){
+void Projectile::setTexture() {
     int i, j;
     unsigned char data[3];
     FILE *fp;
@@ -80,9 +80,9 @@ void Projectile::setTexture(){
     for(i = 0; i < 340; i++){
         for(j = 0; j < 340; j++){
             fread(data, sizeof(unsigned char), 3, fp);
-            wallTexture[i][j][0] = (GLubyte) data[0];
-            wallTexture[i][j][1] = (GLubyte) data[1];
-            wallTexture[i][j][2] = (GLubyte) data[2];
+            projectileTexture[i][j][0] = (GLubyte) data[0];
+            projectileTexture[i][j][1] = (GLubyte) data[1];
+            projectileTexture[i][j][2] = (GLubyte) data[2];
         }
     }
 }
