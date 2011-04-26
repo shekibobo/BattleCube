@@ -69,7 +69,6 @@ void World::Draw() {
 
     bool collision = false;
 
-    glColor3f(0.5, 0.5, 0.5);
     GLfloat size = World::m_WallLength;
     GLfloat pos = size / 2.0;
 
@@ -87,6 +86,7 @@ void World::Draw() {
             glTexCoord2f(5.0, 0.0); glVertex3f(pos, 50, -pos);
             glTexCoord2f(5.0, 5.0); glVertex3f(pos, 50, pos);
             glTexCoord2f(0.0, 5.0); glVertex3f(-pos, 50, pos);
+
         glEnd();
         glDisable(GL_TEXTURE_2D);
     glPopMatrix();
@@ -97,7 +97,11 @@ void World::Draw() {
         glBegin(GL_QUADS);
 
 
-            //wall 1
+    glPushMatrix();
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 340, 340, 0, GL_RGB, GL_UNSIGNED_BYTE, wallTexture);
+        glEnable(GL_TEXTURE_2D);
+        glBegin(GL_POLYGON);
+            //wall1
             glTexCoord2f(0.0, 0.0);
             glVertex3f(-pos, 50, -pos);
             glTexCoord2f(2.0, 0.0);
@@ -136,33 +140,9 @@ void World::Draw() {
             glVertex3f(-pos, FloorPos(), pos);
             glTexCoord2f(0.0, 1.0);
             glVertex3f(-pos, FloorPos(), -pos);
-
         glEnd();
         glDisable(GL_TEXTURE_2D);
     glPopMatrix();
-/*
-    glPushMatrix();
-        glTranslatef(0.0, 0.0, -pos);
-        glScalef(1.0, 0.5, 0.001);
-        glutSolidCube(size);
-    glPopMatrix();
-    glPushMatrix();
-        glTranslatef(0.0, 0.0, pos);
-        glScalef(1.0, 0.5, 0.001);
-        glutSolidCube(size);
-    glPopMatrix();
-
-    glPushMatrix();
-        glTranslatef(pos, 0.0, 0.0);
-        glScalef(0.001, 0.5, 1.0);
-        glutSolidCube(size);
-    glPopMatrix();
-    glPushMatrix();
-        glTranslatef(-pos, 0.0, 0.0);
-        glScalef(0.001, 0.5, 1.0);
-        glutSolidCube(size);
-    glPopMatrix();
-*/
 
     for (it = Drones().begin(); it != Drones().end(); it++) {
         (*it)->Move();
@@ -176,12 +156,6 @@ void World::Draw() {
         if ((*bit)->Size() > 50) bit = Bullets().erase(bit);
         else ++bit;
     }
-
-
-//    for (bit = Bullets().begin(); bit != Bullets().end(); bit++) {
-//        (*bit)->Move();
-//        (*bit)->Draw();
-
 
     it = Drones().begin();
     while( it != Drones().end() )
